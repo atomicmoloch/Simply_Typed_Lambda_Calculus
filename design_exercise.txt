@@ -1,0 +1,26 @@
+ Kavi Wilson
+ Design Exercise
+ 2023/10/11
+
+
+   The feature is a list operation that will take a list of time 'a and an element of type 'a, and will return two sublists of the 'a list, split around the token in its first left-associative appearance if it exists in the list, but otherwise returning the list and an empty list.
+   It would assist in parsing some types of expressions easier (for instance, arithmatic expressions from the expressions homework)
+
+   It could take the form of a standard list operation, of the form "split_around : 'a -> 'a list -> ('a list * 'a list), letting it blend in with the other list operations.
+
+   Implementation would not be difficult. It could be implemented using
+
+ let rec split_around (el : 'a) (ls : 'a list) : ('a list * 'a list) =
+    match ls with
+    | [] -> ([], [])
+    | hd :: tl -> if hd = el then ([], tl) else let l1, l2 = (split_around el tl) in (hd:: l1, l2)
+
+
+   Alternatively, one could implement decimal variables with a limited degree of precision (as opposed to representing them as floats. For instance, dec (3) would initialize 0.000. It could be internally implemented as a tuple between an int and an array of digits of length (x).
+
+    It would have the following semantics:
+    (+), (-): dec(x) -> dec(y) -> dec(max(x,y))
+    (*): dec(x) -> dec(y) -> dec(x+y)
+    (/): dec(x) -> dec(y) -> float
+
+   This data structure would be useful in instances where float rounding errors are unacceptable, or where it would be useful to know the degree of precision of data.
